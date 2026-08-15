@@ -2,44 +2,44 @@
 
 Mini project untuk **Harisenin BooKil - Full Stack Web Developer** (Agustus 2026).
 
-This branch contains six common Laravel mistakes. The application is intentionally
-broken. Your goal is to diagnose and repair it with help from an AI assistant—not
-to ask AI to rewrite the whole project.
+Branch ini berisi enam kesalahan umum pada Laravel. Aplikasi ini sengaja dibuat
+bermasalah. Tujuanmu adalah mencari penyebab dan memperbaikinya dengan bantuan
+AI, bukan meminta AI menulis ulang seluruh project.
 
-## Exercise Mission
+## Misi Latihan
 
-Make these six behaviours work:
+Perbaiki aplikasi agar enam fungsi berikut dapat berjalan dengan benar:
 
-1. The create form is protected against cross-site request forgery.
-2. A task can be created with a title and optional description.
-3. The edit page displays the selected task.
-4. A task's title and description can be updated.
-5. A completed task can be changed back to incomplete.
-6. A task can be deleted using the correct HTTP method.
+1. Form tambah task memiliki perlindungan CSRF.
+2. Task dapat dibuat dengan judul dan deskripsi opsional.
+3. Halaman edit menampilkan task yang dipilih.
+4. Judul dan deskripsi task dapat diperbarui.
+5. Task yang sudah selesai dapat diubah kembali menjadi belum selesai.
+6. Task dapat dihapus menggunakan HTTP method yang tepat.
 
-Run the tests after every fix:
+Jalankan test setelah setiap perbaikan:
 
 ```bash
 php artisan test --filter=TaskExerciseTest
 ```
 
-Use this workflow for each failure:
+Gunakan alur kerja berikut untuk setiap error:
 
-1. Reproduce the problem in the browser or test suite.
-2. Copy the exact error—not only the last line.
-3. Ask AI to explain the error and identify likely files.
-4. Ask for the smallest possible fix and why it works.
-5. Review the proposed change before applying it.
-6. Run the tests and manually verify the feature.
+1. Munculkan kembali masalah melalui browser atau test suite.
+2. Salin pesan error secara lengkap, bukan hanya baris terakhir.
+3. Minta AI menjelaskan error dan menunjukkan file yang kemungkinan bermasalah.
+4. Minta solusi paling sederhana beserta alasan solusi tersebut bekerja.
+5. Periksa perubahan yang disarankan sebelum menerapkannya.
+6. Jalankan test dan periksa fiturnya secara manual.
 
-Example prompt:
+Contoh prompt:
 
 ```text
-I am learning Laravel by debugging a small task manager.
-When I [describe the action], I get this error: [paste exact error].
-Relevant code: [paste the smallest relevant code].
-Explain the root cause, suggest the smallest fix, and tell me how to verify it.
-Do not rewrite unrelated files.
+Saya sedang belajar Laravel dengan memperbaiki aplikasi task manager sederhana.
+Ketika saya [jelaskan tindakan], muncul error berikut: [salin error lengkap].
+Kode yang berkaitan: [salin bagian kode yang paling relevan].
+Jelaskan penyebab utamanya, sarankan perbaikan paling sederhana, dan jelaskan
+cara memverifikasi hasilnya. Jangan ubah file yang tidak berkaitan.
 ```
 
 A simple to-do list application built with Laravel 12 + Bootstrap 5 + MySQL.
