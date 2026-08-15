@@ -87,7 +87,7 @@ cp .env.example .env
 # 5. Generate app key
 php artisan key:generate
 
-# 6. Create MySQL database
+# 6. Create MySQL database on phpMyAdmin or via command line:
 mysql -u root -p -e "CREATE DATABASE taskku;"
 
 # 7. Configure .env — set DB credentials
@@ -131,15 +131,3 @@ resources/views/
 routes/
   web.php                 — 6 routes
 ```
-
-## Session 2 — Debug Challenge
-
-Switch to `session-2` branch and try to find all 6 bugs!
-
-```bash
-git checkout session-2
-php artisan migrate:fresh   # reset database
-php artisan serve
-```
-
-Use the debugging workflow + AI tools to find and fix each bug.
