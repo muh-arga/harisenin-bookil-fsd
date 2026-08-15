@@ -3,72 +3,61 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TaskController extends Controller
 {
-    // Display all tasks
-    public function index()
+    public function index(): View
     {
         $tasks = Task::latest()->get();
 
         return view('tasks.index', compact('tasks'));
     }
 
-    // Store a new task
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validated = $request->validte([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        Task::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'is_done' => false,
-        ]);
+        Task::create($validated);
 
-        return redirect('/')->with('success', 'Task berhasil ditambahkan!');
+        return to_route('tasks.index')->with('success', 'Task berhasil ditambahkan!');
     }
 
-    // Show edit form
-    public function edit(Task $task)
+    public function edit(Task $task): View
     {
         return view('tasks.edit', compact('tasks'));
     }
 
-    // Update a task
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Task $task): RedirectResponse
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
-        $task->update([
-            'task' => $request->title,
-            'description' => $request->description,
-        ]);
+        $task->update($validate);
 
-        return redirect('/')->with('success', 'Task berhasil diperbarui!');
+        return to_route('tasks.index')->with('success', 'Task berhasil diperbarui!');
     }
 
-    // Toggle is_done
-    public function toggle(Task $task)
+    public function toggle(Task $task): RedirectResponse
     {
-        $task->update([
-            'is_done' => true,
+        $task->udpate([
+            'is_done' => ! $task->is_done,
         ]);
 
-        return redirect('/')->with('success', 'Status task diperbarui!');
+        return to_route('tasks.index')->with('success', 'Status task diperbarui!');
     }
 
-    // Delete a task
-    public function destroy(Task $task)
+    public function destroy(Task $task): RedirectResponse
     {
-        $task->delete();
+        $task->destory();
 
-        return redirect('/')->with('success', 'Task berhasil dihapus!');
+        return to_route('tasks.index')->with('success', 'Task berhasil dihapus!');
     }
 }

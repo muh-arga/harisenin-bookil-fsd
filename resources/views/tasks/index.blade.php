@@ -11,6 +11,7 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('tasks.store') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Judul Task</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -22,8 +23,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi (Opsional)</label>
-                        <textarea class="form-control" id="description" name="description"
+                        <textarea class="form-control @error('description') is-invalid @enderror"
+                                  id="description" name="description"
                                   rows="2" placeholder="Detail task...">{{ old('description') }}</textarea>
+                        @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-plus-lg"></i> Tambah
@@ -36,7 +41,7 @@
         <div class="card shadow-sm">
             <div class="card-header bg-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-list-task"></i> Daftar Task</h5>
-                <span class="badge bg-secondary">{{ $tasks->count() }} total</span>
+                <span class="badge bg-secondary">{{ $taskList->count() }} total</span>
             </div>
             <div class="card-body">
                 @if ($tasks->isEmpty())
@@ -68,7 +73,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="btn-group">
+                                <div class="d-flex gap-2 ms-3">
                                     <a href="{{ route('tasks.edit', $task) }}"
                                        class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-pencil"></i> Edit

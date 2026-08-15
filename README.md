@@ -1,49 +1,65 @@
-# TaskKu — AI-Assisted Debugging Exercise (Session 1)
+# TaskKu — Latihan Memperbaiki Error dengan AI (Session 1)
 
 Mini project untuk **Harisenin BooKil - Full Stack Web Developer** (Agustus 2026).
 
-Branch ini berisi enam kesalahan umum pada Laravel. Aplikasi ini sengaja dibuat
-bermasalah. Tujuanmu adalah mencari penyebab dan memperbaikinya dengan bantuan
-AI, bukan meminta AI menulis ulang seluruh project.
+Branch ini berisi enam error sederhana. Setiap error akan menampilkan pesan error
+Laravel beserta nama file dan nomor baris yang bermasalah. Peserta cukup menyalin
+informasi tersebut ke AI chat, meminta perbaikan, lalu menerapkannya secara manual
+di code editor.
+
+Latihan ini tidak memerlukan automated test atau proses debugging yang rumit.
 
 ## Misi Latihan
 
-Perbaiki aplikasi agar enam fungsi berikut dapat berjalan dengan benar:
+Selesaikan enam langkah berikut secara berurutan:
 
-1. Form tambah task memiliki perlindungan CSRF.
-2. Task dapat dibuat dengan judul dan deskripsi opsional.
-3. Halaman edit menampilkan task yang dipilih.
-4. Judul dan deskripsi task dapat diperbarui.
-5. Task yang sudah selesai dapat diubah kembali menjadi belum selesai.
-6. Task dapat dihapus menggunakan HTTP method yang tepat.
+1. Buka halaman daftar task.
+2. Tambahkan task baru.
+3. Buka halaman edit task.
+4. Simpan perubahan task.
+5. Ubah status task menjadi selesai atau belum selesai.
+6. Hapus task.
 
-Jalankan test setelah setiap perbaikan:
+Setiap langkah akan menampilkan satu error. Setelah error diperbaiki, ulangi
+aksi yang sama. Jika sudah berhasil, lanjutkan ke langkah berikutnya.
 
-```bash
-php artisan test --filter=TaskExerciseTest
-```
+## Cara Meminta Bantuan AI
 
-Gunakan alur kerja berikut untuk setiap error:
+AI yang digunakan adalah AI chat biasa seperti ChatGPT free tier. AI tidak dapat
+melihat project atau mengubah file secara otomatis.
 
-1. Munculkan kembali masalah melalui browser atau test suite.
-2. Salin pesan error secara lengkap, bukan hanya baris terakhir.
-3. Minta AI menjelaskan error dan menunjukkan file yang kemungkinan bermasalah.
-4. Minta solusi paling sederhana beserta alasan solusi tersebut bekerja.
-5. Periksa perubahan yang disarankan sebelum menerapkannya.
-6. Jalankan test dan periksa fiturnya secara manual.
+Pada halaman error Laravel, salin:
 
-Contoh prompt:
+- judul atau pesan error;
+- nama file dan nomor baris;
+- potongan kode yang ditandai; dan
+- aksi yang dilakukan sebelum error muncul.
+
+Gunakan prompt berikut:
 
 ```text
-Saya sedang belajar Laravel dengan memperbaiki aplikasi task manager sederhana.
-Ketika saya [jelaskan tindakan], muncul error berikut: [salin error lengkap].
-Kode yang berkaitan: [salin bagian kode yang paling relevan].
-Jelaskan penyebab utamanya, sarankan perbaikan paling sederhana, dan jelaskan
-cara memverifikasi hasilnya. Jangan ubah file yang tidak berkaitan.
+Saya sedang belajar Laravel 12 dan menemukan error berikut ketika
+[jelaskan aksi yang dilakukan]:
+
+[tempel pesan error]
+
+Laravel menunjukkan error pada file [nama file] baris [nomor baris]:
+
+[tempel potongan kode]
+
+Jelaskan kesalahannya dan berikan perbaikan paling sederhana. Sebutkan bagian
+kode yang perlu saya ubah secara manual.
 ```
 
-A simple to-do list application built with Laravel 12 + Bootstrap 5 + MySQL.
-Designed for beginners and career switchers — easy to understand, easy to debug.
+Setelah menerima jawaban AI:
+
+1. Baca penjelasannya.
+2. Pastikan file dan baris yang dibahas sesuai dengan halaman error.
+3. Ubah kode secara manual melalui code editor.
+4. Simpan file dan ulangi aksi yang sama di browser.
+
+> Jangan mengirim isi `.env`, password database, API key, atau informasi rahasia
+> lainnya ke AI chat.
 
 ## Tech Stack
 
@@ -58,7 +74,8 @@ Designed for beginners and career switchers — easy to understand, easy to debu
 | Branch       | Description                          |
 |--------------|--------------------------------------|
 | `session-1`  | Clean working version (for demo)     |
-| `session-2`  | Broken version with 6 planted bugs   |
+| `session-1-exercise` | Latihan 6 error dengan AI chat |
+| `session-2`  | Latihan membuat fitur dengan AI chat |
 
 ## Setup Instructions
 
@@ -75,8 +92,8 @@ Designed for beginners and career switchers — easy to understand, easy to debu
 git clone https://github.com/muh-arga/harisenin-bookil-fsd.git
 cd harisenin-bookil-fsd
 
-# 2. Switch to session-1 branch (clean version)
-git checkout session-1
+# 2. Switch to exercise branch
+git checkout session-1-exercise
 
 # 3. Install PHP dependencies
 composer install
@@ -87,7 +104,7 @@ cp .env.example .env
 # 5. Generate app key
 php artisan key:generate
 
-# 6. Create MySQL database on phpMyAdmin or via command line:
+# 6. Create MySQL database on phpMyadmin or via command line:
 mysql -u root -p -e "CREATE DATABASE taskku;"
 
 # 7. Configure .env — set DB credentials
