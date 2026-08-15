@@ -10,6 +10,7 @@
         body { background-color: #f8f9fa; }
         .task-done { text-decoration: line-through; opacity: 0.6; }
     </style>
+    @yield('page-style')
 </head>
 <body>
     <nav class="navbar navbar-dark bg-primary mb-4 shadow-sm">
@@ -35,5 +36,6 @@
     </div>
 
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    @yield('page-script')
 </body>
 </html>
