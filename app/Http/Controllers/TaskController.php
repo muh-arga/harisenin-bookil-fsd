@@ -11,6 +11,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::latest()->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -34,7 +35,7 @@ class TaskController extends Controller
     // Show edit form
     public function edit(Task $task)
     {
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', compact('tasks'));
     }
 
     // Update a task
@@ -46,7 +47,7 @@ class TaskController extends Controller
         ]);
 
         $task->update([
-            'title' => $request->title,
+            'task' => $request->title,
             'description' => $request->description,
         ]);
 
@@ -57,7 +58,7 @@ class TaskController extends Controller
     public function toggle(Task $task)
     {
         $task->update([
-            'is_done' => ! $task->is_done,
+            'is_done' => true,
         ]);
 
         return redirect('/')->with('success', 'Status task diperbarui!');
@@ -67,6 +68,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
+
         return redirect('/')->with('success', 'Task berhasil dihapus!');
     }
 }

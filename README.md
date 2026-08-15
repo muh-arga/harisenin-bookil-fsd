@@ -1,6 +1,46 @@
-# TaskKu — Simple Task Manager
+# TaskKu — AI-Assisted Debugging Exercise (Session 1)
 
-Project demo untuk **Harisenin BooKil - Full Stack Web Developer** (Agustus 2026).
+Mini project untuk **Harisenin BooKil - Full Stack Web Developer** (Agustus 2026).
+
+This branch contains six common Laravel mistakes. The application is intentionally
+broken. Your goal is to diagnose and repair it with help from an AI assistant—not
+to ask AI to rewrite the whole project.
+
+## Exercise Mission
+
+Make these six behaviours work:
+
+1. The create form is protected against cross-site request forgery.
+2. A task can be created with a title and optional description.
+3. The edit page displays the selected task.
+4. A task's title and description can be updated.
+5. A completed task can be changed back to incomplete.
+6. A task can be deleted using the correct HTTP method.
+
+Run the tests after every fix:
+
+```bash
+php artisan test --filter=TaskExerciseTest
+```
+
+Use this workflow for each failure:
+
+1. Reproduce the problem in the browser or test suite.
+2. Copy the exact error—not only the last line.
+3. Ask AI to explain the error and identify likely files.
+4. Ask for the smallest possible fix and why it works.
+5. Review the proposed change before applying it.
+6. Run the tests and manually verify the feature.
+
+Example prompt:
+
+```text
+I am learning Laravel by debugging a small task manager.
+When I [describe the action], I get this error: [paste exact error].
+Relevant code: [paste the smallest relevant code].
+Explain the root cause, suggest the smallest fix, and tell me how to verify it.
+Do not rewrite unrelated files.
+```
 
 A simple to-do list application built with Laravel 12 + Bootstrap 5 + MySQL.
 Designed for beginners and career switchers — easy to understand, easy to debug.
