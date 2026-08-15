@@ -23,8 +23,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi (Opsional)</label>
-                        <textarea class="form-control" id="description" name="description"
+                        <textarea class="form-control @error('description') is-invalid @enderror"
+                                  id="description" name="description"
                                   rows="2" placeholder="Detail task...">{{ old('description') }}</textarea>
+                        @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-plus-lg"></i> Tambah
@@ -69,7 +73,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="btn-group">
+                                <div class="d-flex gap-2 ms-3">
                                     <a href="{{ route('tasks.edit', $task) }}"
                                        class="btn btn-sm btn-outline-primary">
                                         <i class="bi bi-pencil"></i> Edit
