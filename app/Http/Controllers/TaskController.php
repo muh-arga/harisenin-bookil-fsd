@@ -18,7 +18,7 @@ class TaskController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validte([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
@@ -30,7 +30,7 @@ class TaskController extends Controller
 
     public function edit(Task $task): View
     {
-        return view('tasks.edit', compact('tasks'));
+        return view('tasks.form', compact('task'));
     }
 
     public function update(Request $request, Task $task): RedirectResponse
@@ -40,14 +40,16 @@ class TaskController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $task->update($validate);
+        $task->task = $validated['title'];
+        $task->description = $validated['description'];
+        $task->save();
 
         return redirect()->route('tasks.index')->with('success', 'Task berhasil diperbarui!');
     }
 
     public function toggle(Task $task): RedirectResponse
     {
-        $task->udpate([
+        $task->update([
             'is_done' => ! $task->is_done,
         ]);
 
@@ -56,7 +58,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
-        $task->destory();
+        $task->delete();
 
         return redirect()->route('tasks.index')->with('success', 'Task berhasil dihapus!');
     }

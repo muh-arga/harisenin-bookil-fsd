@@ -11,7 +11,6 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('tasks.store') }}" method="POST">
-                    @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Judul Task</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -57,7 +56,7 @@
                                     <!-- Toggle Done -->
                                     <form action="{{ route('tasks.toggle', $task) }}" method="POST" class="me-3">
                                         @csrf
-                                        @method('PATCH')
+                                        @method('PUT')
                                         <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent">
                                             @if ($task->is_done)
                                                 <i class="bi bi-check-circle-fill text-success" style="font-size: 1.3rem;"></i>
@@ -80,7 +79,6 @@
                                     </a>
                                     <form action="{{ route('tasks.destroy', $task) }}" method="POST">
                                         @csrf
-                                        @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Hapus task ini?')">
                                             <i class="bi bi-trash"></i> Hapus
