@@ -13,13 +13,6 @@ Designed for beginners and career switchers — easy to understand, easy to debu
 | Backend    | Laravel 12 (PHP 8.3)|
 | Database   | MySQL               |
 
-## Branches
-
-| Branch       | Description                          |
-|--------------|--------------------------------------|
-| `session-1`  | Clean working version (for demo)     |
-| `session-2`  | Broken version with 6 planted bugs   |
-
 ## Setup Instructions
 
 ### Prerequisites
