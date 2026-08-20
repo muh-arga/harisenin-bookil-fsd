@@ -13,7 +13,7 @@ class TaskController extends Controller
     {
         $tasks = Task::latest()->get();
 
-        return view('tasks.index', compact('tasks'));
+        return view('tasks.index', compact('task'));
     }
 
     public function store(Request $request): RedirectResponse
